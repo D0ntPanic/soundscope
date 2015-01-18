@@ -1,0 +1,11 @@
+uniform sampler2D scope, bloom;
+
+void main(void)
+{
+	float bloomBright = texture2D(bloom, gl_TexCoord[0].xy).r;
+	vec3 bloomColor = vec3(bloomBright, bloomBright, bloomBright);
+	float scopeBright = texture2D(scope, gl_TexCoord[0].xy).r;
+	vec3 scopeColor = vec3(0.39, 0.80, 0.30) * scopeBright;
+	gl_FragColor = vec4(scopeColor + bloomColor, 1);
+}
+

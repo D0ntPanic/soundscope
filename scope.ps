@@ -1,0 +1,7 @@
+void main(void)
+{
+	float dist = dot(gl_TexCoord[0].xy, gl_TexCoord[0].xy);
+	float bright = max(1.0 - (dist / 3.0), 0.0) * 0.0625;
+	gl_FragColor = vec4(bright, bright, bright, 1);
+}
+

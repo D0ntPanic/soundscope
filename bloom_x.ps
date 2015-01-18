@@ -1,0 +1,17 @@
+uniform sampler2D image;
+
+void main(void)
+{
+	float sum;
+	sum = texture2D(image, gl_TexCoord[0].xy - vec2(4.0 / 96.0, 0)).r * (1.0/25.0);
+	sum += texture2D(image, gl_TexCoord[0].xy - vec2(3.0 / 96.0, 0)).r * (2.0/25.0);
+	sum += texture2D(image, gl_TexCoord[0].xy - vec2(2.0 / 96.0, 0)).r * (3.0/25.0);
+	sum += texture2D(image, gl_TexCoord[0].xy - vec2(1.0 / 96.0, 0)).r * (4.0/25.0);
+	sum += texture2D(image, gl_TexCoord[0].xy).r * (5.0/25.0);
+	sum += texture2D(image, gl_TexCoord[0].xy + vec2(1.0 / 96.0, 0)).r * (4.0/25.0);
+	sum += texture2D(image, gl_TexCoord[0].xy + vec2(2.0 / 96.0, 0)).r * (3.0/25.0);
+	sum += texture2D(image, gl_TexCoord[0].xy + vec2(3.0 / 96.0, 0)).r * (2.0/25.0);
+	sum += texture2D(image, gl_TexCoord[0].xy + vec2(4.0 / 96.0, 0)).r * (1.0/25.0);
+	gl_FragColor = vec4(sum, sum, sum, 1);
+}
+
