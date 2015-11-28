@@ -1,8 +1,15 @@
 all: soundscope
 
-soundscope: soundscope.cpp Makefile
-	g++ -O3 -o soundscope soundscope.cpp `sdl-config --cflags` `sdl-config --libs` -lGL
+UNAME := $(shell uname -s)
+ifeq ($(UNAME),Darwin)
+	CXXC = clang++
+	CXXFLAGS = -framework OpenGL
+else
+	CXXC = g++
+	CXXFLAGS = -lGL
+endif
 
+soundscope: soundscope.cpp Makefile
+	$(CXXC) -O3 -o soundscope soundscope.cpp $(CXXFLAGS) `sdl-config --cflags` `sdl-config --libs`
 clean:
 	rm soundscope
-
